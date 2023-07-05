@@ -1,0 +1,150 @@
+<div class="row justify-content: center mt-4" style="text-align-last: center;">
+    <mat-card class="login-card">   
+        <div class="col-md-3 p-1">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Име:</mat-label>
+                <input matInput [(ngModel)]="name" name="name">
+            </mat-form-field>
+        </div>
+        <div class="col-md-3 p-1">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Колекција:</mat-label>
+                <input matInput [(ngModel)]="collection" name="collection">
+            </mat-form-field>
+        </div>
+        <div class="col-md-3 p-1">
+          <mat-form-field appearance="fill">
+            <mat-label>Категории:</mat-label>
+            <mat-select matInput [(ngModel)]="category" (selectionChange)="changeCategory()">
+              <mat-option *ngFor="let item of categoryList" value={{item.id}}>{{item.categoryInfoList[0].name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div> 
+        <div class="col-md-3 p-1">
+          <mat-form-field appearance="fill">
+              <mat-label>Подкатегории:</mat-label>
+              <mat-select matInput [(ngModel)]="subCategory">
+                <mat-option *ngFor="let item of subCategoryList" value={{item}}>{{item}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+      </div>
+        <div class="col-md-3 p-1">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Слика:</mat-label>
+                <input matInput [(ngModel)]="img" name="img">
+            </mat-form-field>
+        </div>
+        <div class="col-md-3 p-1">
+            <mat-form-field appearance="fill">
+                <mat-label>Материјал:</mat-label>
+                <mat-select matInput [(ngModel)]="material" name="material">
+                  <mat-option value="1">14к Позлата</mat-option>
+                  <mat-option value="2">Сребро</mat-option>
+                  <mat-option value="3">14к Розе позлата</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div class="col-md-3 p-1">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Количина:</mat-label>
+                <input matInput [(ngModel)]="quantity" name="quantity">
+            </mat-form-field>
+        </div>
+        <div class="col-md-3 p-1">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Шифра:</mat-label>
+                <input matInput [(ngModel)]="code" name="code">
+            </mat-form-field>
+        </div>
+        <div class="col-md-3 p-1">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Краток опис:</mat-label>
+                <input matInput [(ngModel)]="smallDescription" name="smaldescription">
+            </mat-form-field>
+        </div>
+        <div class="col-md-3 p-1">
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Цена:</mat-label>
+                <input matInput [(ngModel)]="price" name="price">
+            </mat-form-field>
+        </div>  
+        <div class="col-md-3 p-1">
+            <form>
+                <mat-form-field class="example-chip-list" class="input " appearance="fill">
+                  <mat-label>Големина:</mat-label>
+                  <mat-chip-grid #chipGrid aria-label="Tag selection">
+                    <mat-chip-row *ngFor="let tagg of tag" (removed)="remove(tagg)">
+                      {{tagg}}
+                      <button matChipRemove [attr.aria-label]="'remove ' + tagg">
+                        <mat-icon>cancel</mat-icon>
+                      </button>
+                    </mat-chip-row>
+                  </mat-chip-grid>
+                  <input placeholder="Нова големина..." #tagInput [formControl]="tagCtrl"
+                    [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="add($event)"/>
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let tagg of filteredTag | async" [value]="tagg">
+                      {{tagg}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+        </div> 
+        <div class="col-md-3 p-1">
+            <mat-form-field class="example-full-width">
+                <mat-label>Опис:</mat-label>
+                <textarea matInput  [(ngModel)]="description"></textarea>
+            </mat-form-field>
+        </div> 
+        <div class="col-md-3 p-1">
+            <section class="example-section">
+                <label class="example-margin">Препорачано:</label>
+                <mat-radio-group [(ngModel)]="recomended">
+                  <mat-radio-button class="example-margin" value="1">Да</mat-radio-button>
+                  <mat-radio-button class="example-margin" value="0">Не</mat-radio-button>
+                </mat-radio-group>
+            </section>
+        </div>
+        <div class="row" style="margin-left:14%">
+          <div class="col-md-6">
+            <button mat-raised-button style=" color:white;background-color: #F48999;font-family: monospace;place-self: center;" (click)="dodadi()">Додади</button>
+          </div>
+          <div class="col-md-6">
+            <button mat-raised-button [disabled]="isDisable" style=" color:white;background-color: #F48999;font-family: monospace;place-self: center;" (click)="izmeni()">Измени</button>
+          </div>
+        </div>
+    </mat-card>
+
+    <div class="col-md-12 tableone mt-3 table-responsive">
+        <table class="table" style="text-align: center;">
+            <thead class="table-danger">
+                <tr>
+                <th>Ид</th>
+                <th>Име</th>
+                <th>Категории</th>
+                <th>Подкатегории</th>
+                <th>Краток опис</th>
+                <th>Големини</th>
+                <th>Цена</th>
+                <th>Препорачано</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of list; let i = index" (click)="viewProducts(item)">
+                    <th>{{item.id}}</th>
+                    <th>{{item.productsInfos[0].name}}</th>
+                    <th>{{item.categoryInfos[0].name}}</th>
+                    <th>{{item.subCategory}}</th>
+                    <th>{{item.productsInfos[0].smallDescription}}</th>
+                    <th>{{item.sizes}}</th>
+                    <th>{{item.price}}</th>
+                    <th>{{item.recomended}}</th>
+                    <th (click)="deleteProd(item.id)"><mat-icon>delete_forever</mat-icon></th>  
+                 </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="row justify-content-center ">
+    <div class="col-md-6 text-center  ">
+            <mat-card class="login-card">
+              <h4 >ПРИЈАВА</h4>
+                <div class="example-container">
+                    <mat-form-field class="w-100" appearance="fill">
+                      <mat-label>Е-маил:</mat-label>
+                      <input matInput [(ngModel)]="email" name="email">
+                    </mat-form-field>
+                  </div>
+
+                  <div class="example-container">
+                    <mat-form-field class="w-100" appearance="fill">
+                      <mat-label>Лозинка:</mat-label>
+                      <input matInput [(ngModel)]="password" name="password" [type]="hide ? 'password' : 'text'">
+                      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                    </mat-form-field>
+                    <p>Заборавена лозинка?<p>
+                    <br>
+                    <button mat-raised-button style=" color:white; margin-top: 20px;background-color: #F48999;font-family: monospace;margin-left: 104%;width: 70%;" (click)="login()">Пријава</button>
+                  </div>     
+            </mat-card>
+    </div>
+</div>
+
+
+

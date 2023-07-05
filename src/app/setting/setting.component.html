@@ -1,0 +1,65 @@
+
+<div class="row justify-content: center mt-4" style="text-align-last: center;place-content: center;">
+  
+
+  <div class="col-md-4">
+    <mat-card class="login-card" > 
+        <div class="col-md-12">
+            <mat-form-field class="input" class="w-75" appearance="fill">
+                <mat-label>Taг:</mat-label>
+                <input matInput [(ngModel)]="tag" name="tag">
+            </mat-form-field>
+        </div>  
+        <div class="col-md-12">
+            <mat-form-field class="input" class="w-75" appearance="fill">
+                <mat-label>Име:</mat-label>
+                <input matInput [(ngModel)]="name" name="name">
+            </mat-form-field>
+        </div>
+        <div class="col-md-12">
+            <mat-form-field class="input" class="w-75" appearance="fill">
+                <mat-label>Ознака:</mat-label>
+                <input matInput [(ngModel)]="mark" name="mark">
+            </mat-form-field>
+        </div>
+        <div class="col-md-12">
+            <mat-form-field class="input" class="w-75" appearance="fill">
+                <mat-label>Опис:</mat-label>
+                <input matInput [(ngModel)]="description" name="description">
+            </mat-form-field>
+        </div>
+        <div class="col-md-12">
+            <mat-form-field class="input" class="w-75" appearance="fill">
+                <mat-label>Телефон:</mat-label>
+                <input matInput [(ngModel)]="phone" name="phone">
+            </mat-form-field>
+        </div>
+        <div class="col-md-12">
+            <mat-form-field class="input" class="w-75" appearance="fill">
+                <mat-label>Адреса:</mat-label>
+                <input matInput [(ngModel)]="address" name="address">
+            </mat-form-field>
+        </div>
+        <div class="col-md-12">
+            <mat-form-field class="input" class="w-75" appearance="fill">
+                <mat-label>Е-маил:</mat-label>
+                <input matInput [(ngModel)]="email" name="email">
+            </mat-form-field>
+        </div>
+        <div class="col-md-12">
+            <mat-form-field class="input" class="w-75" appearance="fill">
+                <mat-label>Бесплатна достава:</mat-label>
+                <input matInput [(ngModel)]="freeShipping" name="freeShipping">
+            </mat-form-field>
+        </div>  
+        <div class="row mt-2" style="justify-content: center">
+            <div class="col-md-12">
+              <button mat-raised-button style=" color:white;background-color: #F48999;font-family: monospace;place-self: center;"  (click)="add()">Додади</button>
+            </div>
+          </div>
+    </mat-card>
+  </div>
+      <div class="col-md-4" style="align-self: center;">   
+        <img src="http://easyreservers.com:8080/shop-images/logo.png" >   
+      </div> 
+</div>

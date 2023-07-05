@@ -1,0 +1,28 @@
+ .col-6{
+margin-top: 3%; 
+}
+.login-card{
+    padding: 75px ;
+}
+.example-container{
+    padding: 10px;
+}
+.buttonOne{
+    margin-top: 20px;
+    background-color: #F48999;
+    width: 39%;
+}
+h4{
+    margin-bottom: 36px;
+    font-family: monospace;
+    color:#F48999;
+    font-size: 31px;
+
+}
+p{
+    cursor: pointer;
+    margin-right: 62%;
+    color:#F48999;
+   
+    
+}

@@ -1,0 +1,80 @@
+
+<div class="row">
+    <div class="col-md-4 text-center">
+            <mat-card class="login-card">   
+              <div class="example-container">
+                    <mat-form-field class="input" appearance="fill">
+                      <mat-label>Име:</mat-label>
+                      <input matInput [(ngModel)]="name" name="name">
+                    </mat-form-field>
+              </div>
+                  <div class="example-container">
+                    <mat-form-field class="input" appearance="fill">
+                      <mat-label>Слика:</mat-label>
+                      <input matInput [(ngModel)]="image" name="img">
+                    </mat-form-field>
+                  </div>
+                  <form>
+                    <mat-form-field class="example-chip-list" class="input" appearance="fill">
+                      <mat-label>Таг:</mat-label>
+                      <mat-chip-grid #chipGrid aria-label="Tag selection">
+                        <mat-chip-row *ngFor="let tagg of tag" (removed)="remove(tagg)">
+                          {{tagg}}
+                          <button matChipRemove [attr.aria-label]="'remove ' + tagg">
+                            <mat-icon>cancel</mat-icon>
+                          </button>
+                        </mat-chip-row>
+                      </mat-chip-grid>
+                      <input placeholder="Нов таг..." #tagInput [formControl]="tagCtrl"
+                        [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)"/>
+                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let tagg of filteredTag | async" [value]="tagg">
+                          {{tagg}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </form>
+                  <div class="example-container">
+                    <mat-form-field class="input" appearance="fill">
+                      <mat-label>Боја:</mat-label>
+                      <input type="color" matInput [(ngModel)]="color" name="color">
+                    </mat-form-field>
+                  </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <button mat-raised-button style="color:white;background-color: #F48999;font-family: monospace;place-self: center;" (click)="dodadi()">Додади</button>
+                </div>
+                <div class="col-md-6">
+                  <button mat-raised-button [disabled]="isDisable" style="color:white;background-color: #F48999;font-family: monospace;place-self: center;" (click)="izmeni()">Измени</button>
+                </div>
+              </div>
+            </mat-card>
+    </div>
+
+    <div class="col-md-8 table-responsive"> 
+        <table class="table">
+            <thead class="table-danger">
+              <tr>
+                <th>Ид</th>
+                <th>Име</th>
+                <th>Слика</th>
+                <th>Таг</th>
+                <th>Боја</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody style="text-align: -webkit-center;">
+              <tr *ngFor="let item of list; let i = index" (click)="viewCategory(item)">
+                <th>{{item.id}}</th>
+                <th>{{item.categoryInfoList[0].name}}</th>
+                <th>{{item.image}}</th>
+                <th>{{item.tag}}</th>
+                <th>{{item.color}}</th>
+                <th (click)="brishi(item.id)"><mat-icon>delete_forever</mat-icon></th>
+            </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

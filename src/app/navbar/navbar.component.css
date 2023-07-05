@@ -1,0 +1,16 @@
+.btn{
+    color:black;
+    background-color: #F48999;
+    font-family: monospace;
+}
+.row{
+    border: 1px solid rgb(201, 198, 198);
+}
+
+a:hover{
+    color:#F48999;
+}
+a{
+    color: black;
+    font-family: monospace;
+}

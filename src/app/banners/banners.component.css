@@ -1,0 +1,15 @@
+.login-card{
+    place-items: center;
+    padding: 9px;
+    padding-top:12%
+}
+.table{
+    font-family: monospace;
+}
+mat-icon:hover{
+    color:tomato;
+}
+tr:hover{
+    cursor: pointer;
+    color: rgb(156, 154, 154);
+}

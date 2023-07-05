@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-md-4" style="padding-left: 35px;margin-top: 38px;">
+        <mat-card class="login-card">   
+              <mat-form-field class="w-75" appearance="fill">
+                  <mat-label>Слика:</mat-label>
+                  <input matInput [(ngModel)]="img" name="img">
+              </mat-form-field>
+
+             <mat-form-field appearance="fill" class=" w-75">
+                <mat-label>Категории:</mat-label>
+                <mat-select matInput [(ngModel)]="category" name="category" (selectionChange)="changeCategory()">
+                  <mat-option *ngFor="let item of categoryList" value={{item.id}}>{{item.categoryInfoList[0].name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class=" w-75">
+                <mat-label>Подкатегории:</mat-label>
+                <mat-select matInput [(ngModel)]="subcategory" name="subcategory">
+                  <mat-option *ngFor="let item of subCategoryList" value={{item}}>{{item}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <section class="example-section">
+                <label class="example-margin">Прикажување:</label>
+                <mat-radio-group  matInput [(ngModel)]="recommended" name="recommended">
+                  <mat-radio-button class="example-margin" value="1">Да</mat-radio-button>
+                  <mat-radio-button class="example-margin" value="0">Не</mat-radio-button>
+                </mat-radio-group>
+            </section>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <button mat-raised-button style="color:white;background-color: #F48999;font-family: monospace;place-self: center;"  (click)="addNewBanners()">Додади</button>
+              </div>
+              <div class="col-md-6">
+                <button mat-raised-button [disabled]="isDisable" style="color:white;background-color: #F48999;font-family: monospace;place-self: center;" (click)="izmeni()">Измени</button>
+              </div>
+            </div>
+        </mat-card>
+    </div>
+  
+    <div class="col-md-8 table-responsive"> 
+          <table class="table mt-5">
+              <thead class="table-danger">
+                <tr>
+                  <th>Ид</th>
+                  <th>Слика</th>
+                  <th>Категории</th>
+                  <th>Подкатегории</th>
+                  <th>Прикажување</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of list; let i = index" (click)="viewBanners(item)">
+                  <th>{{item.id}}</th>
+                  <th>{{item.image}}</th>
+                  <th>{{item.categoryName}}</th>
+                  <th>{{item.subCategory}}</th>
+                  <th>{{item.recommended}}</th>
+                  <th (click)="removeBanners(item.id)"><mat-icon>delete_forever</mat-icon></th> 
+                 </tr>
+              </tbody>
+            </table>
+      </div>
+</div>
